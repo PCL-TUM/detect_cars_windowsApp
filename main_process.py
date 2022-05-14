@@ -1,4 +1,5 @@
 import cv2
+from cv2 import drawContours
 import numpy as np
 from obj_tracker import EuclideanDistTracker
 tracker = EuclideanDistTracker()
@@ -20,7 +21,7 @@ while cap.isOpened():
     dilated = cv2.dilate(threshold, (1,1), iterations=1)
     contours, _, = cv2.findContours(dilated, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     detections = []
-    # DRAWING RECTANGLE BOX (Bounding Box)
+    # drawContours 
     for contour in contours:
         (x,y,w,h) = cv2.boundingRect(contour)
         if cv2.contourArea(contour) <300:
